@@ -1,0 +1,17 @@
+1번
+SELECT d.OrderID, o.OrderDate, c.CustomerName, p.ProductName, d.Quantity
+FROM OrderDetails d JOIN Orders o JOIN Customers c JOIN Products p
+ON OrderDate BETWEEN ('1997-01-01') AND ('1997-01-31')
+and d.OrderID = o.OrderID
+and o.CustomerID = c.CustomerID
+and d.ProductID = p.ProductID
+ORDER BY 3 ASC , 2 DESC
+
+2번
+SELECT c.CategoryName, SUM(d.Quantity)
+FROM Orders o JOIN OrderDetails d JOIN Products p JOIN Categories c
+WHERE o.OrderDate BETWEEN ('1996-01-01') AND ('1996-12-31')
+and o.OrderID = d.OrderID
+and d.ProductID = p.ProductID
+and p.CategoryID = c.CategoryID
+GROUP BY c.CategoryName
